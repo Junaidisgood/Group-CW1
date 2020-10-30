@@ -99,6 +99,9 @@
                 cartItemCount: function () {
                     return this.cart.length;
                 },
+                canAddToCart: function () {
+                    return this.lesson.space > this.cartItemCount;
+                }
             }
         })
     </script>
