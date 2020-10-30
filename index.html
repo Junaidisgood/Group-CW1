@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-2">
                     <div v-if='productPage'>
-                        <button v-on:click="showCheckout">
+                        <button v-on:click="showCheckout" class="btn btn-block btn-success">
                             <!-- 'cartitemcount' is used the same way as a data property -->
                             {{ cartItemCount }}
                             <!-- add the cart icon -->
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                     <div v-else>
-                        <button v-on:click="showCheckout">
+                        <button v-on:click="showCheckout" class="btn btn-block btn-success">
                             <!-- 'cartitemcount' is used the same way as a data property -->
                             {{ cartItemCount }}
                             <!-- add the cart icon -->
