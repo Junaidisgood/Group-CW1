@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cart 1</title>
+    <title>After School Club</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -18,11 +18,22 @@
                     <h1 class="text-center">{{title}}</h1>
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-block btn-success">
-                        <!-- comment: v-show="canAddToCart" shows add to cart only when it is true -->
-                        <i class="fas fa-shopping-cart"></i>
-                        Cart
-                    </button>
+                    <div v-if='productPage'>
+                        <button v-on:click="showCheckout">
+                            <!-- 'cartitemcount' is used the same way as a data property -->
+                            {{ cartItemCount }}
+                            <!-- add the cart icon -->
+                            <span class="fas fa-cart-plus"></span> Checkout
+                        </button>
+                    </div>
+                    <div v-else>
+                        <button v-on:click="showCheckout">
+                            <!-- 'cartitemcount' is used the same way as a data property -->
+                            {{ cartItemCount }}
+                            <!-- add the cart icon -->
+                            <span class="fas fa-cart-plus"></span> Products
+                        </button>
+                    </div>
                 </div>
                 
             </div>
@@ -31,116 +42,19 @@
             <div class="row mt-5">
                 <div class="col-4">
                     <div class="card">
-                        <img v-bind:src="lessons.l1.img" class="card-img-top">
+                        <img v-bind:src="lesson.img" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">{{lessons.l1.subject}}</h5>
-                            <p>Price: AED{{lessons.l1.price}}</p>
-                            <p>Location: {{lessons.l1.location}}</p>
-                            <p>Space remaining: {{lessons.l1.space}}</p>
-                            <button v-on:click="addToCart(lessons.l1.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l2.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l2.subject}}</h5>
-                            <p>Price: AED{{lessons.l2.price}}</p>
-                            <p>Location: {{lessons.l2.location}}</p>
-                            <p>Space remaining: {{lessons.l2.space}}</p>
-                            <button v-on:click="addToCart(lessons.l2.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to
-                                cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l3.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l3.subject}}</h5>
-                            <p>Price: AED{{lessons.l3.price}}</p>
-                            <p>Location: {{lessons.l3.location}}</p>
-                            <p>Space remaining: {{lessons.l3.space}}</p>
-                            <button v-on:click="addToCart(lessons.l3.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- SECOND ROW -->
-            <div class="row mt-5">
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l4.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l4.subject}}</h5>
-                            <p>Price: AED{{lessons.l4.price}}</p>
-                            <p>Location: {{lessons.l4.location}}</p>
-                            <p>Space remaining: {{lessons.l4.space}}</p>
-                            <button v-on:click="addToCart(lessons.l4.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l5.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l5.subject}}</h5>
-                            <p>Price: AED{{lessons.l5.price}}</p>
-                            <p>Location: {{lessons.l5.location}}</p>
-                            <p>Space remaining: {{lessons.l5.space}}</p>
-                            <button v-on:click="addToCart(lessons.l5.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l6.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l6.subject}}</h5>
-                            <p>Price: AED{{lessons.l6.price}}</p>
-                            <p>Location: {{lessons.l6.location}}</p>
-                            <p>Space remaining: {{lessons.l6.space}}</p>
-                            <button v-on:click="addToCart(lessons.l6.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- THIRD ROW -->
-            <div class="row mt-5">
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l7.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l7.subject}}</h5>
-                            <p>Price: AED{{lessons.l7.price}}</p>
-                            <p>Location: {{lessons.l7.location}}</p>
-                            <p>Space remaining: {{lessons.l7.space}}</p>
-                            <button v-on:click="addToCart(lessons.l7.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l8.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l8.subject}}</h5>
-                            <p>Price: AED{{lessons.l8.price}}</p>
-                            <p>Location: {{lessons.l8.location}}</p>
-                            <p>Space remaining: {{lessons.l8.space}}</p>
-                            <button v-on:click="addToCart(lessons.l8.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img v-bind:src="lessons.l9.img" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{lessons.l9.subject}}</h5>
-                            <p>Price: AED{{lessons.l9.price}}</p>
-                            <p>Location: {{lessons.l9.location}}</p>
-                            <p>Space remaining: {{lessons.l9.space}}</p>
-                            <button v-on:click="addToCart(lessons.l9.id)" class="btn btn-sm btn-info"><i class="fas fa-cart-plus"></i>Add to cart</button>
+                            <h5 class="card-title">{{lesson.subject}}</h5>
+                            <p>Price: AED{{lesson.price}}</p>
+                            <p>Location: {{lesson.location}}</p>
+                            <p>Available spaces: {{lesson.space - cartItemCount}}</p>
+                            <button v-on:click="addToCart" v-if="canAddToCart" class="btn btn-block btn-info">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to cart
+                            </button>
+                            <button class="btn btn-secondary btn-block disabled" v-else>
+                                Out of stock
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -162,89 +76,26 @@
             el: '#app',
             data: {
                 title: "After School Club",
-                item: '',
-                lessons: {
-                    l1: {
-                        id: 01,
-                        subject: "English",
-                        price: 200,
-                        location: "Dubai",
-                        space: 10,
-                        img: "img/english.jpg"
-                    },
-                    l2: {
-                        id: 02,
-                        subject: "Maths",
-                        price: 250,
-                        location: "London",
-                        space: 15,
-                        img: "img/math.jpg"
-                    },
-                    l3: {
-                        id: 03,
-                        subject: "Chemistry",
-                        price: 150,
-                        location: "Mauritius",
-                        space: 7,
-                        img: "img/chemistry.jpg"
-                    },
-                    l4: {
-                        id: 04,
-                        subject: "Biology",
-                        price: 100,
-                        location: "Malta",
-                        space: 12,
-                        img: "img/biology.jpg"
-                    },
-                    l5: {
-                        id: 05,
-                        subject: "Law",
-                        price: 250,
-                        location: "Mauritius",
-                        space: 20,
-                        img: "img/law.jpg"
-                    },
-                    l6: {
-                        id: 06,
-                        subject: "Science",
-                        price: 50,
-                        location: "London",
-                        space: 100,
-                        img: "img/science.jpg"
-                    },
-                    l7: {
-                        id: 07,
-                        subject: "History",
-                        price: 200,
-                        location: "Malta",
-                        space: 10,
-                        img: "img/history.jpg"
-                    },
-                    l8: {
-                        id: 08,
-                        subject: "Government",
-                        price: 150,
-                        location: "Dubai",
-                        space: 6,
-                        img: "img/government.jpg"
-                    },
-                    l9: {
-                        id: 09,
-                        subject: "Accounting",
-                        price: 100,
-                        location: "Malta",
-                        space: 10,
-                        img: "img/accounting.jpg"
-                    }
+                lesson: {
+                    id: 01,
+                    subject: "English",
+                    price: 200,
+                    location: "Dubai",
+                    space: 10,
+                    img: "img/english.jpg"
                 },
-                cart: []
+                cart: [],
+                productPage: true,
             },
             methods: {
-                addToCart: function(l_id){
-                    this.cart.push(l_id);
+                addToCart: function () {
+                    this.cart.push(this.lesson.id);
                 },
+                showCheckout() {
+                    this.productPage = this.productPage ? false : true;
+                }
             },
-            computed: { //the computed property object
+            computed: { 
             }
         })
     </script>
