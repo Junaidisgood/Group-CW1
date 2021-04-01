@@ -4,7 +4,7 @@
     "short_name": "lessonstore",
     "icons": [
         {
-            "src": "icon-store-512.png",
+            "src": "icon-512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
