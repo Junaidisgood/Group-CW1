@@ -1,0 +1,15 @@
+{
+    "name": "After School Club",
+    "origin": "*",
+    "short_name": "lessonstore",
+    "icons": [
+        {
+            "src": "icon-store-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#B12A34"
+}
